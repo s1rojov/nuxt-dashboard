@@ -1,5 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  devtools: { enabled: true }
-})
+  compatibilityDate: "2026-01-10",
+  devtools: { enabled: true },
+  modules: ["@pinia/nuxt", "@ant-design-vue/nuxt"],
+  css: ["./app/assets/css/main.css"],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  srcDir: "app",
+});
