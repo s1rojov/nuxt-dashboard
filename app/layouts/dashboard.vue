@@ -1,5 +1,5 @@
 <template>
-  <a-layout style="min-height: 100vh">
+  <a-layout style="min-height: 100vh" class="">
     <a-layout-sider width="240" style="background: #3749a6">
       <Sidebar />
     </a-layout-sider>
@@ -15,6 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import Sidebar from "@/layouts/Sidebar.vue";
-import Header from "@/layouts/Header.vue";
+import Sidebar from "~/layouts/Sidebar.vue";
+import Header from "~/layouts/Header.vue";
 </script>

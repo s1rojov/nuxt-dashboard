@@ -1,19 +1,13 @@
-import type { Config } from "tailwindcss";
-
-export default {
+module.exports = {
   content: [
-    "./app/components/**/*.{vue,ts,tsx}",
-    "./app/layouts/**/*.vue",
-    "./app/pages/**/*.vue",
+    "./app/**/*.{vue,js,ts}",
+    "./components/**/*.{vue,js,ts}",
+    "./layouts/**/*.{vue,js,ts}",
+    "./pages/**/*.{vue,js,ts}",
+    "./plugins/**/*.{js,ts}",
   ],
   theme: {
-    extend: {
-      colors: {
-        primary: "#3B82F6",
-        secondary: "#10B981",
-        danger: "#EF4444",
-      },
-    },
+    extend: {},
   },
   plugins: [],
-} satisfies Config;
+};

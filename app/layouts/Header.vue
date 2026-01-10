@@ -79,6 +79,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
+import { useGlobalStore } from "~/stores/global";
 import {
   SearchOutlined,
   BellOutlined,
@@ -94,6 +95,8 @@ interface Language {
 }
 
 const router = useRouter();
+const globalStore = useGlobalStore();
+
 const languages: Language[] = [
   { code: "en", label: "English", flag: "https://flagcdn.com/w40/gb.png" },
   { code: "uz", label: "O'zbekcha", flag: "https://flagcdn.com/w40/uz.png" },
@@ -113,7 +116,10 @@ const handleMenuClick = (item: any) => {
   if (item.key === "profile") {
     console.log("Navigate to profile");
   } else if (item.key === "logout") {
-    router.push("/auth");
+    if (confirm("Tizimdan chiqmoqchimiz?")) {
+      globalStore.logout();
+      router.push("/auth");
+    }
   }
 };
 </script>

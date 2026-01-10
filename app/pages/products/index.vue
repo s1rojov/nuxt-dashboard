@@ -1,5 +1,5 @@
 <template>
-  <div class="text-red=-500">product page</div>
+  <div class="text-red-500">product page</div>
 </template>
 
 <script setup lang="ts">
