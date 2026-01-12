@@ -1,5 +1,5 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
 interface User {
   accessToken: string;
@@ -13,9 +13,25 @@ interface User {
   username: string;
 }
 
-export const useGlobalStore = defineStore("globalAuth", () => {
+export const useGlobalStore = defineStore('globalAuth', () => {
   const isLogged = ref<boolean>(false);
   const user = ref<User | null>(null);
+  const accessToken = ref<string>('');
+  const refreshToken = ref<string>('');
 
-  return { isLogged, user };
+  const setUser = (userData: User) => {
+    user.value = userData;
+    accessToken.value = userData.accessToken;
+    refreshToken.value = userData.refreshToken;
+    isLogged.value = true;
+  };
+
+  const logout = () => {
+    user.value = null;
+    accessToken.value = '';
+    refreshToken.value = '';
+    isLogged.value = false;
+  };
+
+  return { isLogged, user, accessToken, refreshToken, setUser, logout };
 });

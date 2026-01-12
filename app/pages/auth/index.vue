@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-linear-to-br from-blue-600 to-blue-800 flex items-center justify-center p-4"
+    class="min-h-screen bg-linear-to-br from-slate-50 to-slate-300 flex items-center justify-center p-4"
   >
     <div class="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
       <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">
@@ -43,7 +43,7 @@
           :disabled="isLoading"
           class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-bold py-2 px-4 rounded-lg transition"
         >
-          {{ isLoading ? "Kirish..." : "Kirish" }}
+          {{ isLoading ? 'Kirish...' : 'Kirish' }}
         </button>
       </form>
     </div>
@@ -51,51 +51,45 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: "default",
-});
-import { ref, onMounted } from "vue";
-import { useGlobalStore } from "~/stores/global";
-import { useRouter } from "vue-router";
-import { AuthService } from "~/services/auth.service";
+  definePageMeta({
+    layout: 'default',
+  });
+  import { ref, onMounted } from 'vue';
+  import { useGlobalStore } from '~/stores/global';
+  import { useRouter } from 'vue-router';
+  import { AuthService } from '~/services/auth.service';
 
-const user = ref<{ username: string; password: string }>({
-  username: "jamesd",
-  password: "jamesdpass",
-});
-const errorMessage = ref("");
-const isLoading = ref(false);
+  const user = ref<{ username: string; password: string }>({
+    username: 'jamesd',
+    password: 'jamesdpass',
+  });
+  const errorMessage = ref('');
+  const isLoading = ref(false);
 
-const globalStore = useGlobalStore();
-const router = useRouter();
+  const globalStore = useGlobalStore();
+  const router = useRouter();
 
-const handleLogin = async () => {
-  errorMessage.value = "";
-  isLoading.value = true;
+  const handleLogin = async () => {
+    errorMessage.value = '';
+    isLoading.value = true;
 
-  try {
-    const { data, error }: any = await AuthService.login(user.value);
-    if (data) {
-      globalStore.user = { ...data.value };
-      globalStore.isLogged = true;
-      router.push("/dashboard");
-      console.log(data);
+    try {
+      const userData = await AuthService.login(user.value);
+      if (userData) {
+        router.push('/dashboard');
+        localStorage.setItem('userInfo', JSON.stringify(userData));
+      }
+    } catch (error) {
+      errorMessage.value = 'Kirish jarayonida xatolik!';
+      console.error('Login error:', error);
+    } finally {
+      isLoading.value = false;
     }
-    if (error.value) {
-      errorMessage.value = "Kirish jarayonida xatolik!";
-      return;
-    }
-  } catch (error) {
-    errorMessage.value = "Kirish jarayonida xatolik!";
-    console.error("Login error:", error);
-  } finally {
-    isLoading.value = false;
-  }
-};
+  };
 
-onMounted(() => {
-  if (globalStore.isLogged) {
-    router.push("/dashboard");
-  }
-});
+  onMounted(() => {
+    if (globalStore.isLogged) {
+      router.push('/dashboard');
+    }
+  });
 </script>
