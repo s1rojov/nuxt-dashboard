@@ -24,6 +24,23 @@ export const useGlobalStore = defineStore('globalAuth', () => {
     accessToken.value = userData.accessToken;
     refreshToken.value = userData.refreshToken;
     isLogged.value = true;
+    localStorage.setItem('userInfo', JSON.stringify(userData));
+  };
+
+  const loadFromStorage = () => {
+    const savedUser = localStorage.getItem('userInfo');
+    if (savedUser) {
+      try {
+        const userData = JSON.parse(savedUser);
+        user.value = userData;
+        accessToken.value = userData.accessToken;
+        refreshToken.value = userData.refreshToken;
+        isLogged.value = true;
+      } catch (error) {
+        console.error('Error loading user from storage:', error);
+        logout();
+      }
+    }
   };
 
   const logout = () => {
@@ -31,7 +48,16 @@ export const useGlobalStore = defineStore('globalAuth', () => {
     accessToken.value = '';
     refreshToken.value = '';
     isLogged.value = false;
+    localStorage.removeItem('userInfo');
   };
 
-  return { isLogged, user, accessToken, refreshToken, setUser, logout };
+  return {
+    isLogged,
+    user,
+    accessToken,
+    refreshToken,
+    setUser,
+    logout,
+    loadFromStorage,
+  };
 });

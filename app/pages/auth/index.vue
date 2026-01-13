@@ -77,7 +77,6 @@
       const userData = await AuthService.login(user.value);
       if (userData) {
         router.push('/dashboard');
-        localStorage.setItem('userInfo', JSON.stringify(userData));
       }
     } catch (error) {
       errorMessage.value = 'Kirish jarayonida xatolik!';

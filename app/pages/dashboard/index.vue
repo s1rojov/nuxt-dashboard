@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8 bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+  <div class="p-8 bg-linear-to-br from-slate-50 to-slate-100 min-h-screen">
     <!-- Header -->
     <div class="mb-12">
       <h1 class="text-4xl font-bold text-gray-800 mb-2">Dashboard</h1>
@@ -143,7 +143,6 @@
       users.value = usersData;
       posts.value = postsData;
       products.value = productsData;
-      console.log(productsData);
     } catch (err) {
       error.value = "Ma'lumotlar yuklanishida xato!";
     } finally {
