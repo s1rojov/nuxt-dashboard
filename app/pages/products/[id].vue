@@ -17,7 +17,6 @@
     <div class="bg-white rounded-lg shadow-lg p-8 w-full">
       <a-spin :spinning="loading">
         <a-form :model="form" layout="vertical">
-          <!-- Asosiy ma'lumotlar -->
           <h2 class="text-xl font-bold text-gray-800 mb-6">
             Asosiy ma'lumotlar
           </h2>
@@ -25,7 +24,6 @@
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
           >
-            <!-- Nomi -->
             <a-form-item label="Nomi *">
               <a-input
                 v-model:value="form.title"
@@ -34,7 +32,6 @@
               />
             </a-form-item>
 
-            <!-- Kategoriya -->
             <a-form-item label="Kategoriya *">
               <a-select
                 v-model:value="form.category"
@@ -44,7 +41,6 @@
               />
             </a-form-item>
 
-            <!-- Brend -->
             <a-form-item label="Brend">
               <a-input
                 v-model:value="form.brand"
@@ -53,7 +49,6 @@
               />
             </a-form-item>
 
-            <!-- SKU -->
             <a-form-item label="SKU">
               <a-input
                 v-model:value="form.sku"
@@ -63,7 +58,6 @@
             </a-form-item>
           </div>
 
-          <!-- Narx va Skidka -->
           <h2 class="text-xl font-bold text-gray-800 mb-6 mt-8">
             Narx va Skidka
           </h2>
@@ -71,7 +65,6 @@
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
           >
-            <!-- Narx -->
             <a-form-item label="Narx (UZS) *">
               <a-input-number
                 v-model:value="form.price"
@@ -83,7 +76,6 @@
               />
             </a-form-item>
 
-            <!-- Skidka foizi -->
             <a-form-item label="Skidka (%)">
               <a-input-number
                 v-model:value="form.discountPercentage"
@@ -95,8 +87,6 @@
                 class="w-full"
               />
             </a-form-item>
-
-            <!-- Reyting -->
             <a-form-item label="Reyting">
               <a-rate
                 v-model:value="form.rating"
@@ -105,7 +95,6 @@
               />
             </a-form-item>
 
-            <!-- Minimal buyurtma -->
             <a-form-item label="Min buyurtma">
               <a-input-number
                 v-model:value="form.minimumOrderQuantity"
@@ -117,7 +106,6 @@
             </a-form-item>
           </div>
 
-          <!-- Saqlash va Mavjudlik -->
           <h2 class="text-xl font-bold text-gray-800 mb-6 mt-8">
             Saqlash va Mavjudlik
           </h2>
@@ -125,7 +113,6 @@
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
           >
-            <!-- Saqlash miqdori -->
             <a-form-item label="Saqlash miqdori *">
               <a-input-number
                 v-model:value="form.stock"
@@ -136,7 +123,6 @@
               />
             </a-form-item>
 
-            <!-- Mavjudlik holati -->
             <a-form-item label="Mavjudlik holati">
               <a-select
                 v-model:value="form.availabilityStatus"
@@ -146,7 +132,6 @@
               />
             </a-form-item>
 
-            <!-- Og'irligi -->
             <a-form-item label="Og'irligi (kg)">
               <a-input-number
                 v-model:value="form.weight"
@@ -158,7 +143,6 @@
               />
             </a-form-item>
 
-            <!-- Etiketlar -->
             <a-form-item label="Etiketlar">
               <a-select
                 v-model:value="form.tags"
@@ -170,13 +154,11 @@
             </a-form-item>
           </div>
 
-          <!-- O'lchamlar -->
           <h2 class="text-xl font-bold text-gray-800 mb-6 mt-8">O'lchamlar</h2>
 
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
           >
-            <!-- Eni -->
             <a-form-item label="Eni (sm)">
               <a-input-number
                 v-model:value="form.dimensions.width"
@@ -188,7 +170,6 @@
               />
             </a-form-item>
 
-            <!-- Balandligi -->
             <a-form-item label="Balandligi (sm)">
               <a-input-number
                 v-model:value="form.dimensions.height"
@@ -200,7 +181,6 @@
               />
             </a-form-item>
 
-            <!-- Chuqurlik -->
             <a-form-item label="Chuqurlik (sm)">
               <a-input-number
                 v-model:value="form.dimensions.depth"
@@ -213,13 +193,11 @@
             </a-form-item>
           </div>
 
-          <!-- Tavsiflar -->
           <h2 class="text-xl font-bold text-gray-800 mb-6 mt-8">Tavsiflar</h2>
 
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
           >
-            <!-- Tavsif -->
             <div class="lg:col-span-2">
               <a-form-item label="Mahsulot tavsifi *">
                 <a-textarea
@@ -231,7 +209,6 @@
               </a-form-item>
             </div>
 
-            <!-- Kafolat -->
             <div class="lg:col-span-2">
               <a-form-item label="Kafolat ma'lumoti">
                 <a-textarea
@@ -244,7 +221,6 @@
             </div>
           </div>
 
-          <!-- Yetkazib berish va Qaytarish -->
           <h2 class="text-xl font-bold text-gray-800 mb-6 mt-8">
             Yetkazib berish va Qaytarish siyosati
           </h2>
@@ -252,7 +228,6 @@
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
           >
-            <!-- Yetkazib berish -->
             <div class="lg:col-span-2">
               <a-form-item label="Yetkazib berish ma'lumoti">
                 <a-textarea
@@ -264,7 +239,6 @@
               </a-form-item>
             </div>
 
-            <!-- Qaytarish siyosati -->
             <div class="lg:col-span-2">
               <a-form-item label="Qaytarish siyosati">
                 <a-textarea
@@ -277,13 +251,11 @@
             </div>
           </div>
 
-          <!-- Rasmlar -->
           <h2 class="text-xl font-bold text-gray-800 mb-6 mt-8">Rasmlar</h2>
 
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
           >
-            <!-- Miniatura -->
             <a-form-item label="Miniatura rasmi (URL)">
               <a-input
                 v-model:value="form.thumbnail"
@@ -293,7 +265,6 @@
             </a-form-item>
           </div>
 
-          <!-- Qo'shimcha rasmlar -->
           <div class="mb-6">
             <label class="block text-gray-700 font-bold mb-2"
               >Qo'shimcha rasmlar (URL)</label
@@ -323,8 +294,6 @@
               </a-button>
             </div>
           </div>
-
-          <!-- Tugmalar -->
           <div class="flex gap-4 mt-8 pt-6 border-t">
             <a-button
               type="primary"
@@ -361,14 +330,12 @@
   const error = ref<string>('');
   const categories = ref<any>([]);
 
-  // Mavjudlik holati
   const availabilityOptions = [
     { label: 'Mavjud', value: 'In Stock' },
     { label: 'Kam miqdorda', value: 'Low Stock' },
     { label: 'Tugagan', value: 'Out of Stock' },
   ];
 
-  // Etiketlar
   const tagOptions = [
     { label: 'Yangi', value: 'new' },
     { label: 'Aktsiya', value: 'sale' },
@@ -417,7 +384,6 @@
     }
   });
 
-  // DummyJSON API'dan kategoriyalar olish
   async function fetchCategories() {
     try {
       const response = await fetch('https://dummyjson.com/products/categories');
@@ -431,7 +397,6 @@
     }
   }
 
-  // DummyJSON API'dan mahsulot olish
   async function fetchProduct() {
     try {
       loading.value = true;
@@ -446,7 +411,6 @@
 
       const data = await response.json();
 
-      // Ma'lumotlarni formga to'ldirish
       form.value = {
         title: data.title || '',
         description: data.description || '',
@@ -482,7 +446,6 @@
 
   async function saveProduct() {
     try {
-      // Validatsiya
       if (!form.value.title.trim()) {
         error.value = "Mahsulot nomi to'ldirilishi shart!";
         return;
@@ -507,7 +470,6 @@
       loading.value = true;
       error.value = '';
 
-      // Rasmlarni to'g'rilash (bo'sh qatorlarni o'chirish)
       form.value.images = form.value.images.filter(
         (img: string) => img.trim() !== '',
       );
@@ -561,7 +523,6 @@
 </script>
 
 <style scoped>
-  /* Ant Design Input Number uchun to'liq kenglik */
   :deep(.ant-input-number) {
     width: 100%;
   }

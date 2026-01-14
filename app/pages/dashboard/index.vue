@@ -1,12 +1,10 @@
 <template>
   <div class="p-8 bg-linear-to-br from-slate-50 to-slate-100 min-h-screen">
-    <!-- Header -->
     <div class="mb-12">
       <h1 class="text-4xl font-bold text-gray-800 mb-2">Dashboard</h1>
       <p class="text-gray-600">Tizimning asosiy statistikasi</p>
     </div>
 
-    <!-- Loading State -->
     <div v-if="loading" class="flex justify-center items-center h-96">
       <div class="text-center">
         <div
@@ -16,7 +14,6 @@
       </div>
     </div>
 
-    <!-- Error State -->
     <div
       v-else-if="error"
       class="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg mb-8"
@@ -24,9 +21,7 @@
       {{ error }}
     </div>
 
-    <!-- Stats Cards -->
     <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-      <!-- Users Card -->
       <div
         class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
       >
@@ -48,7 +43,6 @@
         </p>
       </div>
 
-      <!-- Posts Card -->
       <div
         class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
       >
@@ -66,7 +60,6 @@
         <p class="text-gray-500 text-xs mt-4">Barcha e'lonlar va maqolalar</p>
       </div>
 
-      <!-- Products Card -->
       <div
         class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
       >
@@ -87,7 +80,6 @@
       </div>
     </div>
 
-    <!-- Quick Actions -->
     <div class="bg-white rounded-2xl shadow-lg p-8">
       <h2 class="text-xl font-bold text-gray-800 mb-6">Tez Amallar</h2>
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">

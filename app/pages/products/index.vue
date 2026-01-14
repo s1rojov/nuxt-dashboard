@@ -1,11 +1,9 @@
 <template>
   <div class="p-8 bg-linear-to-br from-slate-50 to-slate-100 min-h-screen">
-    <!-- Header -->
     <div class="mb-6">
       <h1 class="text-4xl font-bold text-gray-800 mb-4">Mahsulotlar</h1>
     </div>
 
-    <!-- Xato xabari -->
     <div
       v-if="error"
       class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"
@@ -13,10 +11,8 @@
       {{ error }}
     </div>
 
-    <!-- Amallar va Filterlar -->
     <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Qidiruv -->
         <a-input-search
           v-model:value="filter.search"
           placeholder="Nomi bo'yicha qidirish..."
@@ -24,7 +20,6 @@
           :disabled="loading"
         />
 
-        <!-- Kategoriya filteri -->
         <a-select
           v-model:value="filter.category"
           placeholder="Kategoriya"
@@ -34,7 +29,6 @@
           :options="categories"
         />
 
-        <!-- Narx diapazoni -->
         <a-range-picker
           v-model:value="filter.priceRange"
           type="number"
@@ -43,7 +37,6 @@
           @change="handleFilterChange"
         />
 
-        <!-- Saqlash holati -->
         <a-select
           v-model:value="filter.availabilityStatus"
           placeholder="Mavjudlik holati"
@@ -54,7 +47,6 @@
         />
       </div>
 
-      <!-- Satr bo'yicha elementlar va Amallar -->
       <div class="flex justify-between items-center mt-6">
         <div class="flex gap-4 items-center">
           <a-button type="primary" @click="Create" :disabled="loading">
@@ -96,7 +88,6 @@
       </div>
     </div>
 
-    <!-- Jadval -->
     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
       <a-table
         :columns="columns"
@@ -109,43 +100,36 @@
         :scroll="{ x: 1200 }"
       >
         <template #bodyCell="{ column, text, record }">
-          <!-- Narx -->
           <template v-if="column.key === 'price'">
             <span class="font-semibold text-green-600">{{
               formatPrice(text)
             }}</span>
           </template>
 
-          <!-- Skidka -->
           <template v-else-if="column.key === 'discountPercentage'">
             <a-tag v-if="text" color="orange">-{{ text }}%</a-tag>
             <span v-else class="text-gray-400">—</span>
           </template>
 
-          <!-- Reyting -->
           <template v-else-if="column.key === 'rating'">
             <a-rate :value="text" disabled :allow-half="true" />
             <span class="ml-2 text-sm text-gray-600">({{ text }})</span>
           </template>
 
-          <!-- Saqlash -->
           <template v-else-if="column.key === 'stock'">
             <a-tag :color="getStockColor(record)"> {{ text }} ta </a-tag>
           </template>
 
-          <!-- Mavjudlik -->
           <template v-else-if="column.key === 'availabilityStatus'">
             <a-tag :color="getAvailabilityColor(text)">
               {{ text }}
             </a-tag>
           </template>
 
-          <!-- Tavsif -->
           <template v-else-if="column.key === 'description'">
             <span class="truncate block max-w-xs">{{ text }}</span>
           </template>
 
-          <!-- Amallar -->
           <template v-else-if="column.key === 'actions'">
             <div class="flex gap-2">
               <a-button
@@ -173,7 +157,6 @@
       </a-table>
     </div>
 
-    <!-- Bulk Delete Modal -->
     <a-modal
       v-model:visible="bulkDeleteModal"
       title="Tasdiqlash"
@@ -303,7 +286,6 @@
     refresh();
   });
 
-  // API chaqiruvlari
   async function fetchCategories() {
     try {
       const response = await fetch('https://dummyjson.com/products/categories');
@@ -325,12 +307,10 @@
       pagination.value.pageSize
     }&skip=${(pagination.value.current - 1) * pagination.value.pageSize}`;
 
-    // Qidiruv
     if (filter.value.search) {
       url = `https://dummyjson.com/products/search?q=${filter.value.search}&limit=${pagination.value.pageSize}`;
     }
 
-    // Kategoriya filtri
     if (filter.value.category) {
       url = `https://dummyjson.com/products/category/${
         filter.value.category
@@ -345,7 +325,6 @@
         products.value = data.products || [];
         pagination.value.total = data.total || 0;
 
-        // Qo'shimcha filtrlash
         filterProducts();
       })
       .catch((err) => {
@@ -360,7 +339,6 @@
   function filterProducts() {
     let filtered = [...products.value];
 
-    // Narx filteri
     if (filter.value.priceRange && filter.value.priceRange.length === 2) {
       filtered = filtered.filter(
         (p) =>
@@ -369,7 +347,6 @@
       );
     }
 
-    // Mavjudlik filteri
     if (filter.value.availabilityStatus) {
       filtered = filtered.filter(
         (p) => p.availabilityStatus === filter.value.availabilityStatus,
@@ -442,7 +419,6 @@
       loading.value = true;
       bulkDeleteModal.value = false;
 
-      // Barcha tanlangan elementlarni o'chirish
       for (const id of selectedRowKeys.value) {
         await fetch(`https://dummyjson.com/products/${id}`, {
           method: 'DELETE',
